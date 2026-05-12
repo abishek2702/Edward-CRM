@@ -22,12 +22,27 @@ async function loadContacts() {
     const contact = doc.data();
 const id = doc.id;
     const row = `
-      <tr>
-        <td>${contact.name || ""}</td>
-        <td>${contact.email || ""}</td>
-        <td>${contact.phone || ""}</td>
-        <td>${contact.stage || ""}</td>
-      </tr>
+     <tr>
+
+  <td>${contact.name || ""}</td>
+
+  <td>${contact.email || ""}</td>
+
+  <td>${contact.phone || ""}</td>
+
+  <td>
+    <span class="stage ${contact.stage.toLowerCase().replace(" ","-")}">
+      ${contact.stage || ""}
+    </span>
+  </td>
+
+  <td>
+    <button class="delete-btn" data-id="${id}">
+      Delete
+    </button>
+  </td>
+
+</tr>
     `;
 
     contactTable.innerHTML += row;
