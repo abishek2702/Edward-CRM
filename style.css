@@ -105,3 +105,26 @@ body{
   color:white;
   cursor:pointer;
 }
+.contact-list{
+  margin:20px;
+  background:#101827;
+  padding:20px;
+  border-radius:20px;
+}
+
+.contact-list table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
+}
+
+.contact-list th,
+.contact-list td{
+  padding:14px;
+  text-align:left;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.contact-list th{
+  color:#66d9ff;
+}
