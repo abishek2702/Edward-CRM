@@ -641,42 +641,118 @@ function renderPipelines(){
 
 function renderSmartLists(){
 
-  mortgageList.innerHTML = "";
+  if(mortgageList){
+    mortgageList.innerHTML = "";
+  }
 
-  realtorList.innerHTML = "";
+  if(realtorList){
+    realtorList.innerHTML = "";
+  }
+
+  if(inspectorList){
+    inspectorList.innerHTML = "";
+  }
+
+  if(plumberList){
+    plumberList.innerHTML = "";
+  }
 
   const vendors =
-  allContacts.filter(c =>
+  allContacts.filter(contact =>
 
-    c.type === "Vendor"
+    contact.type === "Vendor"
 
     ||
 
-    c.contactType === "Vendor"
+    contact.contactType === "Vendor"
 
   );
 
   vendors.forEach(vendor => {
 
+    const vendorType =
+    (vendor.vendorType || "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s/g,'');
+
     const item = `
 
       <div class="upcoming-item">
 
-        ${vendor.name || "-"}
+        <strong>${vendor.name || "-"}</strong>
+
+        <br><br>
+
+        ${vendor.vendorType || "-"}
 
       </div>
 
     `;
 
-    if(vendor.vendorType === "Mortgage Broker"){
+    console.log(vendorType);
+
+    if(vendorType.includes("mortgage")){
 
       mortgageList.innerHTML += item;
 
     }
 
-    if(vendor.vendorType === "Real Estate Agent"){
+    else if(
+
+      vendorType.includes("realestate")
+
+      ||
+
+      vendorType.includes("realtor")
+
+      ||
+
+      vendorType.includes("agent")
+
+    ){
 
       realtorList.innerHTML += item;
+
+    }
+
+    else if(vendorType.includes("inspector")){
+
+      inspectorList.innerHTML += item;
+
+    }
+
+    else if(vendorType.includes("plumb")){
+
+      plumberList.innerHTML += item;
+
+    }
+
+  });
+
+}
+
+    /* INSPECTOR */
+
+    else if(type.includes("inspector")){
+
+      if(inspectorList){
+
+        inspectorList.innerHTML += item;
+
+      }
+
+    }
+
+    /* PLUMBING */
+
+    else if(type.includes("plumb")){
+
+      if(plumberList){
+
+        plumberList.innerHTML += item;
+
+      }
 
     }
 
