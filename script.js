@@ -4,8 +4,8 @@ import {
   collection,
   addDoc,
   getDocs,
-deleteDoc,
-doc
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
 console.log("Edward CRM Loaded");
