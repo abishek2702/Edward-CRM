@@ -100,6 +100,12 @@ document.getElementById("mortgageList");
 const realtorList =
 document.getElementById("realtorList");
 
+const inspectorList =
+document.getElementById("inspectorList");
+
+const plumberList =
+document.getElementById("plumberList");
+
 /* PROFILE */
 
 const profilePanel =
@@ -639,6 +645,8 @@ function renderPipelines(){
 
 /* ---------------- SMART LISTS ---------------- */
 
+/* ---------------- SMART LISTS ---------------- */
+
 function renderSmartLists(){
 
   if(mortgageList){
@@ -690,13 +698,15 @@ function renderSmartLists(){
 
     `;
 
-    console.log(vendorType);
+    /* MORTGAGE */
 
     if(vendorType.includes("mortgage")){
 
       mortgageList.innerHTML += item;
 
     }
+
+    /* REALTOR */
 
     else if(
 
@@ -716,43 +726,19 @@ function renderSmartLists(){
 
     }
 
+    /* INSPECTOR */
+
     else if(vendorType.includes("inspector")){
 
       inspectorList.innerHTML += item;
 
     }
 
+    /* PLUMBING */
+
     else if(vendorType.includes("plumb")){
 
       plumberList.innerHTML += item;
-
-    }
-
-  });
-
-}
-
-    /* INSPECTOR */
-
-    else if(type.includes("inspector")){
-
-      if(inspectorList){
-
-        inspectorList.innerHTML += item;
-
-      }
-
-    }
-
-    /* PLUMBING */
-
-    else if(type.includes("plumb")){
-
-      if(plumberList){
-
-        plumberList.innerHTML += item;
-
-      }
 
     }
 
