@@ -1,36 +1,13 @@
-import { db } from "./firebase.js";
+const row = `
+<tr>
+  <td>${contact.name || ""}</td>
+  <td>${contact.email || ""}</td>
+  <td>${contact.phone || ""}</td>
+  <td>${contact.stage || ""}</td>
+</tr>
+`;
 
-import {
-  collection,
-  addDoc,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
-
-console.log("Edward CRM Loaded");
-
-const saveBtn = document.getElementById("saveContact");
-const contactTable = document.getElementById("contactTable");
-
-async function loadContacts(){
-
-  contactTable.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "contacts"));
-
-  querySnapshot.forEach((doc) => {
-
-    const contact = doc.data();
-
-    contactTable.innerHTML += `
-    
-      <tr>
-        <td>${contact.name}</td>
-        <td>${contact.email}</td>
-        <td>${contact.phone}</td>
-        <td>${contact.stage}</td>
-      </tr>
-
-    `;
+contactTable.innerHTML += row;
 
   });
 
