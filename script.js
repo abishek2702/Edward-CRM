@@ -85,3 +85,16 @@ saveBtn.addEventListener("click", async () => {
   }
 
 });
+document.addEventListener("click", async (e) => {
+
+  if(e.target.classList.contains("delete-btn")){
+
+    const id = e.target.dataset.id;
+
+    await deleteDoc(doc(db, "contacts", id));
+
+    loadContacts();
+
+  }
+
+});
