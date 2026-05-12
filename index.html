@@ -2,98 +2,597 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Edward CRM</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/main.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <aside class="sidebar">
-      <h1>Edward CRM</h1>
+  <!-- SIDEBAR -->
 
-      <button>Dashboard</button>
-      <button>Pending</button>
-      <button>Closing</button>
-      <button>Past Clients</button>
-      <button>SOI / Vendors</button>
-    </aside>
+  <aside class="sidebar">
 
-    <main class="main">
+    <h1>Edward CRM</h1>
 
-      <div class="topbar">
-        <input type="text" placeholder="Search contacts..." />
-        <button>Add Contact</button>
+    <button class="nav-btn active" data-page="dashboard">
+      Dashboard
+    </button>
+
+    <button class="nav-btn" data-page="contacts">
+      Contacts
+    </button>
+
+    <button class="nav-btn" data-page="pending">
+      Pending
+    </button>
+
+    <button class="nav-btn" data-page="closing">
+      Closing
+    </button>
+
+    <button class="nav-btn" data-page="past">
+      Past Clients
+    </button>
+
+    <button class="nav-btn" data-page="soi">
+      SOI
+    </button>
+
+    <button class="nav-btn" data-page="vendors">
+      Vendors
+    </button>
+
+    <button class="nav-btn" data-page="smartlists">
+      Smart Lists
+    </button>
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search contacts..."
+      >
+
+      <div class="topbar-actions">
+
+        <button id="openContactModalBtn">
+          + Contact
+        </button>
+
+        <button id="openVendorModalBtn">
+          + Vendor
+        </button>
+
+        <button id="openSOIModalBtn">
+          + SOI
+        </button>
+
       </div>
-<div class="contact-form">
 
-  <input type="text" id="name" placeholder="Name">
-  
-  <input type="email" id="email" placeholder="Email">
+    </div>
 
-  <input type="text" id="phone" placeholder="Phone">
+    <!-- DASHBOARD -->
 
-  <select id="stage">
-    <option>Pending</option>
-    <option>Closing</option>
-    <option>Past Client</option>
-  </select>
+    <section
+      id="dashboardPage"
+      class="page"
+    >
 
-  <button id="saveContact">Save Contact</button>
-
-</div>
-     <div class="contact-list">
-
-  <h2>Contacts</h2>
-
-  <table>
-
-    <thead>
-
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Stage</th>
-        <th>Actions</th>
-      </tr>
-
-    </thead>
-
-    <tbody id="contactTable"></tbody>
-
-  </table>
-
-</div>
       <div class="cards">
 
         <div class="card">
-          <h3>Active Leads</h3>
-          <p>128</p>
+          <h3>Total Contacts</h3>
+          <p id="activeLeadsCount">0</p>
         </div>
 
         <div class="card">
           <h3>Closing</h3>
-          <p>12</p>
+          <p id="closingCount">0</p>
         </div>
 
         <div class="card">
-          <h3>Birthdays</h3>
-          <p>8</p>
+          <h3>Past Clients</h3>
+          <p id="pastClientsCount">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Pending</h3>
+          <p id="pendingCount">0</p>
         </div>
 
       </div>
 
-    </main>
+      <div class="dashboard-grid">
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>Recent Contacts</h2>
+          </div>
+
+          <div id="recentContacts"></div>
+
+        </div>
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>Tasks & Reminders</h2>
+          </div>
+
+          <div id="tasksList"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACTS -->
+
+    <section
+      id="contactsPage"
+      class="page hidden"
+    >
+
+      <div class="contact-list">
+
+        <div class="contact-header">
+
+          <h2>Contacts</h2>
+
+        </div>
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Stage</th>
+              <th>Activity</th>
+              <th>Actions</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="contactTable"></tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- PENDING -->
+
+    <section
+      id="pendingPage"
+      class="page hidden"
+    >
+
+      <div class="pipeline-wrapper">
+
+        <div class="pipeline-header pending-header">
+          Pending
+        </div>
+
+        <div id="pendingPipeline"></div>
+
+      </div>
+
+    </section>
+
+    <!-- CLOSING -->
+
+    <section
+      id="closingPage"
+      class="page hidden"
+    >
+
+      <div class="pipeline-wrapper">
+
+        <div class="pipeline-header closing-header">
+          Closing
+        </div>
+
+        <div id="closingPipeline"></div>
+
+      </div>
+
+    </section>
+
+    <!-- PAST -->
+
+    <section
+      id="pastPage"
+      class="page hidden"
+    >
+
+      <div class="pipeline-wrapper">
+
+        <div class="pipeline-header past-header">
+          Past Clients
+        </div>
+
+        <div id="pastPipeline"></div>
+
+      </div>
+
+    </section>
+
+    <!-- SOI -->
+
+    <section
+      id="soiPage"
+      class="page hidden"
+    >
+
+      <div class="contact-list">
+
+        <div class="contact-header">
+
+          <h2>SOI</h2>
+
+        </div>
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Name</th>
+              <th>Relationship</th>
+              <th>Phone</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="soiTable"></tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- VENDORS -->
+
+    <section
+      id="vendorsPage"
+      class="page hidden"
+    >
+
+      <div class="contact-list">
+
+        <div class="contact-header">
+
+          <h2>Vendors</h2>
+
+        </div>
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Name</th>
+              <th>Vendor Type</th>
+              <th>Phone</th>
+              <th>Email</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="vendorsTable"></tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- SMART LISTS -->
+
+    <section
+      id="smartlistsPage"
+      class="page hidden"
+    >
+
+      <div class="dashboard-grid">
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>Mortgage Brokers</h2>
+          </div>
+
+          <div id="mortgageList"></div>
+
+        </div>
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>Real Estate Agents</h2>
+          </div>
+
+          <div id="realtorList"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- CONTACT MODAL -->
+
+<div
+  class="modal hidden"
+  id="contactModal"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>Add Contact</h2>
+
+      <button class="closeModalBtn">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="modal-scroll">
+
+      <div class="modal-body">
+
+        <input
+          type="text"
+          id="contactName"
+          placeholder="Full Name"
+        >
+
+        <input
+          type="email"
+          id="contactEmail"
+          placeholder="Email"
+        >
+
+        <input
+          type="text"
+          id="contactPhone"
+          placeholder="Phone"
+        >
+
+        <textarea
+          id="contactNotes"
+          placeholder="Notes"
+        ></textarea>
+
+        <select id="contactStage">
+
+          <option>Pending</option>
+          <option>Closing</option>
+          <option>Past Client</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button id="saveContactBtn">
+        Save Contact
+      </button>
+
+    </div>
 
   </div>
 
-<script type="module" src="firebase.js"></script>
-<script type="module" src="script.js"></script>
+</div>
+
+<!-- VENDOR MODAL -->
+
+<div
+  class="modal hidden"
+  id="vendorModal"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>Add Vendor</h2>
+
+      <button class="closeModalBtn">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="modal-scroll">
+
+      <div class="modal-body">
+
+        <input
+          type="text"
+          id="vendorName"
+          placeholder="Vendor Name"
+        >
+
+        <input
+          type="email"
+          id="vendorEmail"
+          placeholder="Email"
+        >
+
+        <input
+          type="text"
+          id="vendorPhone"
+          placeholder="Phone"
+        >
+
+        <select id="vendorType">
+
+          <option>Mortgage Broker</option>
+          <option>Real Estate Agent</option>
+          <option>Home Inspector</option>
+          <option>Plumbing</option>
+
+        </select>
+
+        <textarea
+          id="vendorNotes"
+          placeholder="Notes"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button id="saveVendorBtn">
+        Save Vendor
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SOI MODAL -->
+
+<div
+  class="modal hidden"
+  id="soiModal"
+>
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>Add SOI</h2>
+
+      <button class="closeModalBtn">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="modal-scroll">
+
+      <div class="modal-body">
+
+        <input
+          type="text"
+          id="soiName"
+          placeholder="Name"
+        >
+
+        <input
+          type="text"
+          id="soiRelationship"
+          placeholder="Relationship"
+        >
+
+        <input
+          type="text"
+          id="soiPhone"
+          placeholder="Phone"
+        >
+
+        <textarea
+          id="soiNotes"
+          placeholder="Notes"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button id="saveSOIBtn">
+        Save SOI
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- PROFILE PANEL -->
+
+<div
+  class="profile-panel hidden"
+  id="profilePanel"
+>
+
+  <div class="profile-header">
+
+    <h2>Profile</h2>
+
+    <button id="closeProfileBtn">
+      ✕
+    </button>
+
+  </div>
+
+  <div
+    class="profile-content"
+    id="profileContent"
+  ></div>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
 
 </body>
 </html>
