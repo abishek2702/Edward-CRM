@@ -20,7 +20,7 @@ async function loadContacts() {
   querySnapshot.forEach((doc) => {
 
     const contact = doc.data();
-
+const id = doc.id;
     const row = `
       <tr>
         <td>${contact.name || ""}</td>
