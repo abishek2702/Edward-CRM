@@ -128,3 +128,43 @@ body{
 .contact-list th{
   color:#66d9ff;
 }
+/* CONTACT TABLE */
+
+.contact-list{
+  margin:20px;
+  background:#101827;
+  border-radius:20px;
+  padding:20px;
+  overflow-x:auto;
+}
+
+.contact-list h2{
+  margin-bottom:20px;
+  color:#66d9ff;
+}
+
+.contact-list table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.contact-list thead{
+  background:#0f1725;
+}
+
+.contact-list th{
+  padding:16px;
+  text-align:left;
+  color:#66d9ff;
+  font-size:14px;
+}
+
+.contact-list td{
+  padding:16px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  color:white;
+}
+
+.contact-list tr:hover{
+  background:rgba(255,255,255,0.03);
+}
