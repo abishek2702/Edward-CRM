@@ -1,0 +1,83 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  background:#070b14;
+  color:white;
+}
+
+.app{
+  display:flex;
+  height:100vh;
+}
+
+.sidebar{
+  width:250px;
+  background:#0d1320;
+  padding:20px;
+  border-right:1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar h1{
+  margin-bottom:30px;
+  color:#66d9ff;
+}
+
+.sidebar button{
+  width:100%;
+  margin-bottom:10px;
+  padding:12px;
+  background:#101827;
+  border:none;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.main{
+  flex:1;
+}
+
+.topbar{
+  height:70px;
+  background:#0b1220;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+}
+
+.topbar input{
+  width:300px;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background:#101827;
+  color:white;
+}
+
+.topbar button{
+  padding:12px 18px;
+  border:none;
+  border-radius:10px;
+  background:#0072ff;
+  color:white;
+  cursor:pointer;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  background:#101827;
+  padding:20px;
+  border-radius:20px;
+}
